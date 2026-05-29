@@ -91,9 +91,9 @@ RUN;
 
 
 /*-----------------------------------------------------------------------
-  03. DESCRIPTIVE î Table 1: utilization and payments by severity
+  03. DESCRIPTIVE ‚Äù Table 1: utilization and payments by severity
   Uses weighted means (weight = Tot_Dschrgs) to account for
-  hospital volume î standard HEOR practice
+  hospital volume ‚Äù standard HEOR practice
 ------------------------------------------------------------------------*/
 PROC MEANS DATA  = heor.hf
            MEAN MEDIAN STD MIN MAX
@@ -132,7 +132,7 @@ PROC MEANS DATA  = heor.hf
            SUM  = state_total_dschrg;
 RUN;
 
-* Step 4b: coefficient of variation î quantifies geographic disparity;
+* Step 4b: coefficient of variation ‚Äù quantifies geographic disparity;
 PROC MEANS DATA  = heor.state_means
            MEAN STD CV
            NWAY NOPRINT;
@@ -161,7 +161,7 @@ RUN;
 PROC PRINT DATA = heor.state_drg291 (OBS=10) NOOBS;
     VAR Rndrng_Prvdr_State_Abrvtn state_avg_pmt state_total_dschrg;
     FORMAT state_avg_pmt DOLLAR10.2 state_total_dschrg COMMA10.0;
-    TITLE "Table 3a: Top 10 States by Avg Medicare Payment î DRG 291 (Major HF)";
+    TITLE "Table 3a: Top 10 States by Avg Medicare Payment ‚Äù DRG 291 (Major HF)";
 RUN;
 
 PROC SORT DATA = heor.state_means
@@ -173,7 +173,7 @@ RUN;
 PROC PRINT DATA = heor.state_drg291_low (OBS=10) NOOBS;
     VAR Rndrng_Prvdr_State_Abrvtn state_avg_pmt state_total_dschrg;
     FORMAT state_avg_pmt DOLLAR10.2 state_total_dschrg COMMA10.0;
-    TITLE "Table 3b: Bottom 10 States by Avg Medicare Payment î DRG 291 (Major HF)";
+    TITLE "Table 3b: Bottom 10 States by Avg Medicare Payment ‚Äù DRG 291 (Major HF)";
 RUN;
 
 
@@ -216,9 +216,9 @@ PROC REG DATA   = heor.hf_model
     WEIGHT Tot_Dschrgs;
     MODEL  log_medicare_pmt = drg_291 drg_292 high_volume
            / CLB          /* confidence limits for betas */
-             VIF          /* variance inflation î check multicollinearity */
+             VIF          /* variance inflation ‚Äù check multicollinearity */
              R;           /* residual output */
-    TITLE "Table 4: Weighted Log-Linear Regression î Predictors of Medicare Payment";
+    TITLE "Table 4: Weighted Log-Linear Regression ‚Äù Predictors of Medicare Payment";
     FOOTNOTE "Reference: DRG 293 (minor severity), low-volume hospital";
 RUN;
 QUIT;
@@ -226,7 +226,7 @@ QUIT;
 * Step 5d: exponentiate coefficients back to dollar scale for interpretation;
 
 /*-----------------------------------------------------------------------
-  06. PAIRWISE COMPARISON î are payment differences significant?
+  06. PAIRWISE COMPARISON ‚Äù are payment differences significant?
   PROC GLM with LSMEANS for adjusted means by severity
 ------------------------------------------------------------------------*/
 PROC GLM DATA   = heor.hf_model;
