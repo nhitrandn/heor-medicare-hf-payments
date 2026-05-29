@@ -1,0 +1,18 @@
+# Raw CMS data file — too large for GitHub and freely downloadable
+data/
+*.csv.zip
+MUP_*.csv
+
+# SAS work files
+*.log
+*.lst
+*.sas7bdat
+*.sas7bcat
+
+# OS files
+.DS_Store
+Thumbs.db
+*.sas7bdat
+*.csv
+MUP_*.txt
+data.CSV
